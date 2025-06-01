@@ -12,12 +12,19 @@ use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Resources\CategoryResource\Pages;
+use Illuminate\Database\Eloquent\Builder;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
+
+    // hak akses
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole('Admin');
+    }
 
     public static function form(Form $form): Form
     {
@@ -42,6 +49,12 @@ class CategoryResource extends Resource
                     ->columns(1)
                     ->columnSpanFull(),
             ]);
+    }
+
+    // eager loading
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['parent']);
     }
 
     public static function table(Table $table): Table

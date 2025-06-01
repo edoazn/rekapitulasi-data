@@ -11,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PelayananResource extends Resource
 {
@@ -63,6 +64,21 @@ class PelayananResource extends Resource
             ]);
     }
 
+    // eager load
+    public static function getEloquentQuery(): Builder
+    {
+        // ambil data dengan eager loading
+        $query = parent::getEloquentQuery()->with(['parentCategory', 'category', 'user']);    
+
+        // cek apakah user memiliki role admin
+        if(!auth()->user()->hasRole('Admin')) {
+            // jika tidak, maka tampilkan data yang dimiliki oleh user
+            $query->where('user_id', auth()->id());
+        }
+
+        return $query;
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -71,30 +87,31 @@ class PelayananResource extends Resource
                 Tables\Columns\TextColumn::make('tgl_pelayanan')
                     ->label('Tanggal Pelayanan')
                     ->date('d F Y')
-                    ->sortable()
-                    ->searchable(),
-
-
+                    ->sortable(),
+                // Kategori
                 Tables\Columns\TextColumn::make('parentCategory.name')
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
-
+                // Sub kategori
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Sub kategori')
                     ->sortable()
                     ->searchable(),
-
-                // Tables\Columns\TextColumn::make('user.name')
-                //     ->label('Petugas')
-                //     ->sortable()
-                //     ->searchable(),
+               // User
+               Tables\Columns\TextColumn::make('user.name')
+                    ->label('Petugas')
+                    ->sortable()
+                    ->searchable()
+                    ->visible(fn () : bool => auth()->user()->hasRole('Admin')),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->visible(fn () : bool => auth()->user()->hasRole('Admin')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

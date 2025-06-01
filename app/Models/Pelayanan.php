@@ -8,6 +8,10 @@ class Pelayanan extends Model
 {
     protected $fillable = ['tgl_pelayanan', 'category_id', 'parent_category_id', 'user_id'];
 
+    protected $casts = [
+        'tgl_pelayanan' => 'datetime'
+    ];
+
 
     // Relasi ke kategori
     public function category()

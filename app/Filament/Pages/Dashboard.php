@@ -11,13 +11,13 @@ class Dashboard extends BaseDashboard
 
     protected static string $view = 'filament-panels::pages.dashboard';
 
-    public function getWidgets(): array
-    {
-        return array_merge(
-            Filament::getWidgets(),
-            [
-                \App\Filament\Resources\WidgetsResource\Widgets\TotalPelayananWidget::class,
-            ]
-        );
-    }
+    // public function getWidgets(): array
+    // {
+    //     return array_merge(
+    //         Filament::getWidgets(),
+    //         [
+    //             \App\Filament\Resources\WidgetsResource\Widgets\TotalPelayananWidget::class,
+    //         ]
+    //     );
+    // }
 }

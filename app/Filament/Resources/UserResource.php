@@ -19,6 +19,13 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    // hak akses
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole('Admin');
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -32,13 +39,11 @@ class UserResource extends Resource
                             ->required()
                             ->maxLength(255),
 
-
                         // email
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
                             ->maxLength(255),
-
 
                         // password
                         Forms\Components\TextInput::make('password')

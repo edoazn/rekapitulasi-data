@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Filament\Resources\PelayananResource\Pages;
-use App\Models\Pelayanan;
-use Maatwebsite\Excel\Facades\Excel;
+
+use App\Filament\Resources\PelayananResource;
 use Filament\Actions;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PelayananExport;
 use Filament\Resources\Pages\ListRecords;
-use App\Filament\Resources\PelayananResource;
 
 class ListPelayanans extends ListRecords
 {
@@ -17,6 +17,7 @@ class ListPelayanans extends ListRecords
         return [
             Actions\CreateAction::make(),
 
+            // Export excel
             // import excel
             Actions\Action::make('export')
             ->label('Export Excel')

@@ -12,18 +12,8 @@ class EditPelayanan extends EditRecord
 
     protected function getHeaderActions(): array
     {
-       // cek role
-       if (auth()->user()->hasRole('Admin')) {
         return [
             Actions\DeleteAction::make(),
         ];
-       } else {
-        return [];
-       }
-    }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
     }
 }

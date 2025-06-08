@@ -2,116 +2,101 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PelayananResource\Pages;
-use App\Models\Category;
-use App\Models\Pelayanan;
+use App\Exports\PelayananExport;
 use Filament\Forms;
-use Filament\Forms\Components\Hidden;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Pelayanan;
 use Filament\Tables\Table;
+use App\Models\BidangPelayanan;
+use Filament\Resources\Resource;
+use App\Models\JenisBidangPelayanan;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PelayananResource\Pages;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
 
 class PelayananResource extends Resource
 {
     protected static ?string $model = Pelayanan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                // tanggal pelayanan
+                Forms\Components\DatePicker::make('tgl_pelayanan')
+                    ->label('Tanggal Pelayanan')
+                    ->default(now())
+                    ->native(false)
+                    ->displayFormat('d F Y')
+                    ->required(),
 
-                // card
-                Forms\Components\Section::make()
-                    ->schema([
-                        // tanggal
-                        Forms\Components\DatePicker::make('tgl_pelayanan')
-                            ->label('Tanggal Pelayanan')
-                            ->default(now())
-                            ->displayFormat('d F Y')
-                            ->required(),
+                Forms\Components\Select::make('bidang_pelayanan_id')
+                    ->label('Bidang Pelayanan')
+                    ->options(BidangPelayanan::all()->pluck('bidang_pelayanan', 'id'))
+                    ->reactive()
+                    ->required(),
 
-                        // Category
-                        Forms\Components\Select::make('parent_category_id')
-                            ->label('Kategori Induk')
-                            ->options(Category::whereNull('parent_id')->pluck('name', 'id'))
-                            ->reactive()
-                            ->required()
-                            ->afterStateUpdated(fn(callable $set) => $set('category_id', null))
-                            ->placeholder('Pilih Kategori Induk'),
+                // Select Jenis Bidang Pelayanan (cascade)
+                Forms\Components\Select::make('jenis_bidang_pelayanan_id')
+                    ->label('Jenis Bidang Pelayanan')
+                    ->options(function (callable $get) {
+                        $bidangId = $get('bidang_pelayanan_id');
+                        if (!$bidangId)
+                            return [];
+                        return JenisBidangPelayanan::where('bidang_pelayanan_id', $bidangId)
+                            ->pluck('nama_jenis', 'id');
+                    })
+                    ->required()
+                    ->reactive(),
 
-                        // Sub Category
-                        Forms\Components\Select::make('category_id')
-                            ->label('Subkategori')
-                            ->options(function (callable $get) {
-                                $parentId = $get('parent_category_id');
-                                if (!$parentId) {
-                                    return [];
-                                }
-                                return Category::where('parent_id', $parentId)->pluck('name', 'id');
-                            })
-                            ->required()
-                            ->placeholder('Pilih Subkategori'),
+                // jumlah
+                Forms\Components\TextInput::make('jumlah_pelayanan')
+                    ->label('Jumlah')
+                    ->numeric()
+                    ->required(),
 
-                        // User
-                        Hidden::make('user_id')
-                            ->default(auth()->id())
-                            ->required(),
-                    ])
+                // hide user_id
+                Hidden::make('user_id')
+                    ->default(auth()->id()),
             ]);
-    }
-
-    // eager load
-    public static function getEloquentQuery(): Builder
-    {
-        // ambil data dengan eager loading
-        $query = parent::getEloquentQuery()->with(['parentCategory', 'category', 'user']);    
-
-        // cek apakah user memiliki role admin
-        if(!auth()->user()->hasRole('Admin')) {
-            // jika tidak, maka tampilkan data yang dimiliki oleh user
-            $query->where('user_id', auth()->id());
-        }
-
-        return $query;
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                // card
+                // tanggal pelayanan
                 Tables\Columns\TextColumn::make('tgl_pelayanan')
                     ->label('Tanggal Pelayanan')
                     ->date('d F Y')
+                    // ->displayFormat('d F Y')
                     ->sortable(),
-                // Kategori
-                Tables\Columns\TextColumn::make('parentCategory.name')
-                    ->label('Kategori')
-                    ->sortable()
-                    ->searchable(),
-                // Sub kategori
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Sub kategori')
-                    ->sortable()
-                    ->searchable(),
-               // User
-               Tables\Columns\TextColumn::make('user.name')
-                    ->label('Petugas')
-                    ->sortable()
-                    ->searchable()
-                    ->visible(fn () : bool => auth()->user()->hasRole('Admin')),
+
+                // Bidang Pelayanan
+                Tables\Columns\TextColumn::make('jenisBidangPelayanan.bidangPelayanan.bidang_pelayanan')
+                    ->label('Bidang Pelayanan'),
+
+                // jenis_bidang_pelayanan
+                Tables\Columns\TextColumn::make('jenisBidangPelayanan.nama_jenis')
+                    ->label('Jenis Bidang Pelayanan'),
+
+                // jumlah
+                Tables\Columns\TextColumn::make('jumlah_pelayanan')
+                    ->label('Jumlah'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->visible(fn () : bool => auth()->user()->hasRole('Admin')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -10,6 +10,7 @@ class CreatePelayanan extends CreateRecord
 {
     protected static string $resource = PelayananResource::class;
 
+    // redirect to index
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

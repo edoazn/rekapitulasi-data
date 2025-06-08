@@ -6,23 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelayanan extends Model
 {
-    protected $fillable = ['tgl_pelayanan', 'category_id', 'parent_category_id', 'user_id'];
+    protected $fillable = ['tgl_pelayanan','jenis_bidang_pelayanan_id','jumlah_pelayanan', 'user_id'];
 
     protected $casts = [
         'tgl_pelayanan' => 'datetime'
     ];
-
-
-    // Relasi ke kategori
-    public function category()
+    
+    // Relasi ke JenisBidangPelayanan
+    public function jenisBidangPelayanan()
     {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    // Relasi ke kategori induk
-    public function parentCategory()
-    {
-        return $this->belongsTo(Category::class, 'parent_category_id');
+        return $this->belongsTo(JenisBidangPelayanan::class, 'jenis_bidang_pelayanan_id');
     }
 
     // Relasi ke user

@@ -16,14 +16,16 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BidangPelayananResource extends Resource
 {
     protected static ?string $model = BidangPelayanan::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+    protected static ?string $navigationGroup = 'Master Pelayanan';
 
     // admin only
-    public static function canAccess(): bool
+    public static function canViewAny(): bool
     {
         return auth()->user()->hasRole('Admin');
     }
+
+
     public static function form(Form $form): Form
     {
         return $form

@@ -25,6 +25,7 @@ class PelayananResource extends Resource
     protected static ?string $model = Pelayanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
+    protected static ?string $navigationGroup = 'Data Pelayanan';
 
     public static function form(Form $form): Form
     {
@@ -47,13 +48,7 @@ class PelayananResource extends Resource
                 // Select Jenis Bidang Pelayanan (cascade)
                 Forms\Components\Select::make('jenis_bidang_pelayanan_id')
                     ->label('Jenis Bidang Pelayanan')
-                    ->options(function (callable $get) {
-                        $bidangId = $get('bidang_pelayanan_id');
-                        if (!$bidangId)
-                            return [];
-                        return JenisBidangPelayanan::where('bidang_pelayanan_id', $bidangId)
-                            ->pluck('nama_jenis', 'id');
-                    })
+                    ->options(fn(callable $get) => JenisBidangPelayanan::where('bidang_pelayanan_id', $get('bidang_pelayanan_id'))->pluck('nama_jenis', 'id'))
                     ->required()
                     ->reactive(),
 
@@ -92,6 +87,7 @@ class PelayananResource extends Resource
                 Tables\Columns\TextColumn::make('jumlah_pelayanan')
                     ->label('Jumlah'),
             ])
+            ->defaultSort('tgl_pelayanan', 'desc')
             ->filters([
                 //
             ])

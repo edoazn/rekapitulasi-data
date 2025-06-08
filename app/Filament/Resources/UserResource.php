@@ -17,10 +17,10 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-
+    protected static ?string $navigationGroup = 'Manajemen User';
 
     // hak akses
-    public static function canAccess(): bool
+    public static function canViewAny(): bool
     {
         return auth()->user()->hasRole('Admin');
     }
@@ -43,22 +43,26 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
+                            ->unique(ignoreRecord: true)
+                            ->label('Email')
                             ->maxLength(255),
 
                         // password
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->revealable()
-                            ->required()
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->dehydrateStateUsing(fn($state) => filled($state) ? bcrypt($state) : null)
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn(string $operation): bool => $operation === 'create'),
 
                         // role
                         Forms\Components\Select::make('roles')
-                            ->options([
-                                'Admin' => 'Admin',
-                                'User' => 'User',
-                            ])
-                            ->required(),
+                            ->label('Role')
+                            ->relationship('roles', 'name')
+                            ->preload()
+                            ->required()
+                            ->multiple(false)
                     ])
             ]);
     }
@@ -83,19 +87,41 @@ class UserResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                    
+
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                self::resetPasswordAction(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    // Reset Password Action
+    public static function resetPasswordAction(): Tables\Actions\Action
+    {
+        return Tables\Actions\Action::make('resetPassword')
+            ->label('Reset Password')
+            ->icon('heroicon-o-key')
+            ->form([
+                Forms\Components\TextInput::make('password')
+                    ->label('Password Baru')
+                    ->password()
+                    ->revealable()
+                    ->required()
+                    ->maxLength(255),
+            ])
+            ->action(function (User $record, array $data) {
+                $record->update([
+                    'password' => bcrypt($data['password']),
+                ]);
+            });
     }
 
     public static function getRelations(): array
@@ -112,5 +138,11 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+
+    // default role
+    public static function creating($record): void
+    {
+        $record->assignRole('Petugas');
     }
 }

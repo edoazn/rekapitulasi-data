@@ -18,6 +18,7 @@ class JenisBidangPelayananResource extends Resource
     protected static ?string $model = JenisBidangPelayanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static ?string $navigationGroup = 'Master Pelayanan';
 
     // admin only
     public static function canAccess(): bool

@@ -12,14 +12,4 @@ class Dashboard extends BaseDashboard
     protected static string $view = 'filament-panels::pages.dashboard';
     // title
     protected static?string $title = 'Utama';
-
-    // public function getWidgets(): array
-    // {
-    //     return array_merge(
-    //         Filament::getWidgets(),
-    //         [
-    //             \App\Filament\Resources\WidgetsResource\Widgets\TotalPelayananWidget::class,
-    //         ]
-    //     );
-    // }
 }

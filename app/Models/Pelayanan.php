@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelayanan extends Model
 {
-    protected $fillable = ['tgl_pelayanan','jenis_bidang_pelayanan_id','jumlah_pelayanan', 'user_id'];
+    protected $fillable = ['tgl_pelayanan', 'jenis_bidang_pelayanan_id', 'jumlah_pelayanan', 'user_id'];
 
     protected $casts = [
-        'tgl_pelayanan' => 'datetime'
+        'tgl_pelayanan' => 'datetime',
     ];
-    
+
     // Relasi ke JenisBidangPelayanan
     public function jenisBidangPelayanan()
     {

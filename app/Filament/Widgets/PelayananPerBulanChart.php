@@ -2,8 +2,8 @@
 
 namespace App\Filament\Widgets;
 
-use Filament\Widgets\ChartWidget;
 use App\Models\Pelayanan;
+use Filament\Widgets\ChartWidget;
 
 class PelayananPerBulanChart extends ChartWidget
 {
@@ -12,7 +12,7 @@ class PelayananPerBulanChart extends ChartWidget
     protected function getData(): array
     {
         $months = collect(range(0, 11))
-            ->map(fn($i) => now()->subMonths($i)->format('Y-m'))
+            ->map(fn ($i) => now()->subMonths($i)->format('Y-m'))
             ->sort()
             ->values();
 
@@ -22,7 +22,7 @@ class PelayananPerBulanChart extends ChartWidget
             ->orderBy('bulan')
             ->pluck('total', 'bulan');
 
-        $values = $months->map(fn($bulan) => $data->get($bulan, 0))->toArray();
+        $values = $months->map(fn ($bulan) => $data->get($bulan, 0))->toArray();
 
         return [
             'datasets' => [
@@ -34,7 +34,6 @@ class PelayananPerBulanChart extends ChartWidget
             'labels' => $months->toArray(),
         ];
     }
-
 
     protected function getType(): string
     {

@@ -3,20 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BidangPelayananResource\Pages;
-use App\Filament\Resources\BidangPelayananResource\RelationManagers;
 use App\Models\BidangPelayanan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BidangPelayananResource extends Resource
 {
     protected static ?string $model = BidangPelayanan::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+
     protected static ?string $navigationGroup = 'Master Pelayanan';
 
     // admin only
@@ -25,22 +24,21 @@ class BidangPelayananResource extends Resource
         return auth()->user()->hasRole('Admin');
     }
 
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 // bidang_pelayanan
                 Forms\Components\TextInput::make('bidang_pelayanan')
-                ->label('Bidang Pelayanan')
-                ->required()
-                ->unique(ignoreRecord: true),
+                    ->label('Bidang Pelayanan')
+                    ->required()
+                    ->unique(ignoreRecord: true),
 
                 // keterangan
                 Forms\Components\Textarea::make('keterangan')
-                ->label('Keterangan')
-                ->nullable()
-                ->maxLength(255),
+                    ->label('Keterangan')
+                    ->nullable()
+                    ->maxLength(255),
             ]);
     }
 
@@ -49,11 +47,11 @@ class BidangPelayananResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('bidang_pelayanan')
-                ->label('Bidang Pelayanan')
-                ->searchable(),
+                    ->label('Bidang Pelayanan')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('keterangan')
-                ->label('Keterangan')
-                ->searchable(),
+                    ->label('Keterangan')
+                    ->searchable(),
             ])
             ->filters([
                 //

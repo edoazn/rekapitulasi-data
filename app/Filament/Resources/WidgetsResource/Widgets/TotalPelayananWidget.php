@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\WidgetsResource\Widgets;
 
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Section;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 

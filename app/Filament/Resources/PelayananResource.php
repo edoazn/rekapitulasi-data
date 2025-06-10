@@ -2,29 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Exports\PelayananExport;
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use App\Models\Pelayanan;
-use Filament\Tables\Table;
+use App\Filament\Resources\PelayananResource\Pages;
 use App\Models\BidangPelayanan;
-use Filament\Resources\Resource;
 use App\Models\JenisBidangPelayanan;
+use App\Models\Pelayanan;
+use Filament\Forms;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\PelayananResource\Pages;
-use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
 
 class PelayananResource extends Resource
 {
     protected static ?string $model = Pelayanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
+
     protected static ?string $navigationGroup = 'Data Pelayanan';
 
     public static function form(Form $form): Form
@@ -48,7 +43,7 @@ class PelayananResource extends Resource
                 // Select Jenis Bidang Pelayanan (cascade)
                 Forms\Components\Select::make('jenis_bidang_pelayanan_id')
                     ->label('Jenis Bidang Pelayanan')
-                    ->options(fn(callable $get) => JenisBidangPelayanan::where('bidang_pelayanan_id', $get('bidang_pelayanan_id'))->pluck('nama_jenis', 'id'))
+                    ->options(fn (callable $get) => JenisBidangPelayanan::where('bidang_pelayanan_id', $get('bidang_pelayanan_id'))->pluck('nama_jenis', 'id'))
                     ->required()
                     ->reactive(),
 

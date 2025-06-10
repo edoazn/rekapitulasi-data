@@ -8,7 +8,6 @@ class JenisBidangPelayanan extends Model
 {
     protected $fillable = ['nama_jenis', 'bidang_pelayanan_id'];
 
-    
     // Relasi ke bidang pelayanan
     public function bidangPelayanan()
     {

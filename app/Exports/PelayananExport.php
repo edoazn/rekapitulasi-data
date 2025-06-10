@@ -24,7 +24,7 @@ class PelayananExport implements FromCollection, WithHeadings, WithMapping
             $pelayanan->tgl_pelayanan->format('d F Y'),
             $pelayanan->jenisBidangPelayanan->bidangPelayanan->bidang_pelayanan ?? 'N/A',
             $pelayanan->jenisBidangPelayanan->nama_jenis ?? 'N/A',
-            $pelayanan->jumlah_pelayanan ?? 'N/A'
+            $pelayanan->jumlah_pelayanan ?? 'N/A',
         ];
     }
 

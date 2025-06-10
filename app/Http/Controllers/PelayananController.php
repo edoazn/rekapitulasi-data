@@ -13,6 +13,7 @@ class PelayananController extends Controller
     public function index()
     {
         $pelayanans = Pelayanan::with(['category', 'user'])->paginate(10);
+
         return view('pelayanan.index', compact('pelayanans'));
     }
 

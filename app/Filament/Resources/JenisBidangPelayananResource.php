@@ -3,21 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\JenisBidangPelayananResource\Pages;
-use App\Filament\Resources\JenisBidangPelayananResource\RelationManagers;
 use App\Models\JenisBidangPelayanan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class JenisBidangPelayananResource extends Resource
 {
     protected static ?string $model = JenisBidangPelayanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+
     protected static ?string $navigationGroup = 'Master Pelayanan';
 
     // admin only

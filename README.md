@@ -1,115 +1,137 @@
-# Service Management System (Update with actual project name)
+# Rekapitulasi Data
 
-## About The Project
+Website rekapitulasi data menggunakan Laravel dan Filament.
 
-This project is a web application built with Laravel and Filament, designed to manage and track service requests. It allows users to submit requests for various services, which are then categorized and can be managed by administrators through a comprehensive admin panel.
+## Deskripsi
 
-**Note:** Please update the project title above and this description with more specific details about your project's purpose and scope.
+Proyek ini adalah aplikasi web untuk melakukan rekapitulasi data dengan framework Laravel sebagai backend dan Filament sebagai admin panel. Cocok digunakan untuk kebutuhan pencatatan, pelaporan, atau manajemen data secara efisien.
 
-## Key Features
+## Fitur
 
-*   **User Management:**
-    *   User registration and authentication.
-    *   Admin and user roles.
-*   **Service Request Management (Pelayanan):**
-    *   Create, view, and manage service requests.
-    *   Track service requests by date.
-*   **Categorization of Services:**
-    *   Organize services into categories.
-    *   Support for hierarchical (parent-child) categories.
-*   **Admin Panel:**
-    *   Built with Filament, providing a rich interface for:
-        *   Managing users.
-        *   Managing service requests.
-        *   Managing categories.
+- Manajemen data dinamis
+- Dashboard interaktif dengan Filament
+- Autentikasi dan otorisasi pengguna
+- CRUD data dengan interface modern
+- Export dan import data
+- Pencarian dan filter data
+- Responsive design
 
-## Tech Stack
+## Teknologi yang Digunakan
 
-*   **PHP:** ^8.1
-*   **Laravel Framework:** ^12.0
-*   **Filament:** ^3.3 (TALL Stack - Tailwind CSS, Alpine.js, Livewire)
-*   **Database:** Relational Database (e.g., MySQL, PostgreSQL, SQLite - please specify your project's database)
-*   **Frontend Build:** Vite
-*   **Dependency Management:**
-    *   Composer (PHP)
-    *   NPM (JavaScript)
+- **Laravel** (PHP)
+- **Filament Admin Panel**
+- **Blade** (template engine Laravel)
+- **JavaScript**
+- **CSS**
 
-## Getting Started
+## Prasyarat
 
-To get a local copy up and running, follow these simple steps.
+Sebelum menginstal aplikasi ini, pastikan sistem Anda memenuhi persyaratan berikut:
 
-### Prerequisites
+- PHP >= 8.1
+- Composer
+- Node.js & NPM
+- MySQL/MariaDB
+- Git
 
-Ensure you have the following installed:
-*   PHP (>= 8.1)
-*   Composer
-*   Node.js & NPM
-*   A web server (like Nginx or Apache, though `php artisan serve` is often sufficient for development)
-*   A database server (e.g., MySQL, PostgreSQL)
+## Instalasi
 
-### Installation
+1. Clone repository:
 
-1.  **Clone the repo**
-    ```sh
-    # Replace with your actual repository URL
-    git clone https://your-repository-url.git
-    cd your-project-directory
-    ```
-2.  **Install PHP dependencies**
-    ```sh
-    composer install
-    ```
-3.  **Install NPM dependencies**
-    ```sh
-    npm install
-    ```
-4.  **Create and configure your environment file**
-    ```sh
-    cp .env.example .env
-    ```
-    Then, open `.env` and set your database connection details (`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) and any other necessary environment variables.
-5.  **Generate application key**
-    ```sh
-    php artisan key:generate
-    ```
-6.  **Run database migrations**
-    ```sh
-    php artisan migrate
-    ```
-7.  **(Optional) Seed the database**
-    If your project has seeders to populate initial data:
-    ```sh
-    php artisan db:seed
-    ```
-8.  **Build frontend assets**
-    ```sh
-    npm run dev
-    ```
-    (For development. For production, use `npm run build`)
-9.  **Start the development server**
-    ```sh
-    php artisan serve
-    ```
-    The application should now be accessible at `http://localhost:8000` (or another port if specified).
+   ```bash
+   git clone https://github.com/edoazn/rekapitulasi-data.git
+   cd rekapitulasi-data
+   ```
 
-## Contributing
+2. Install dependency PHP via Composer:
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+   ```bash
+   composer install
+   ```
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+3. Install dependency frontend:
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request.
+   ```bash
+   npm install
+   npm run build
+   ```
 
-(Alternatively, for major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.)
+4. Copy file .env dan atur konfigurasi database:
 
-This project adheres to the [Laravel framework's contribution guidelines](https://laravel.com/docs/contributions).
+   ```bash
+   cp .env.example .env
+   ```
 
-## License
+5. Generate key aplikasi:
 
-Distributed under the MIT License. See `LICENSE` file (if one exists, otherwise assume standard MIT as per Laravel) for more information.
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Migrasi database:
+
+   ```bash
+   php artisan migrate
+   ```
+
+7. Jalankan server lokal:
+
+   ```bash
+   php artisan serve
+   ```
+
+8. Akses aplikasi di [http://localhost:8000](http://localhost:8000)
+
+## Penggunaan
+
+1. Login ke sistem menggunakan kredensial yang telah dibuat
+2. Akses panel admin Filament di `/admin`
+3. Mulai mengelola data melalui menu yang tersedia
+
+## Struktur Direktori
+
+```
+rekapitulasi-data/
+├── app/                # Logic aplikasi
+├── config/            # File konfigurasi
+├── database/          # Migrasi dan seeders
+├── public/            # Asset publik
+├── resources/         # Views dan asset frontend
+├── routes/            # Definisi route
+└── tests/             # Unit dan feature tests
+```
+
+## Pemeliharaan
+
+- Jalankan perintah berikut untuk update dependensi:
+  ```bash
+  composer update
+  npm update
+  ```
+- Backup database secara berkala
+- Pastikan selalu menggunakan versi PHP dan Laravel yang didukung
+
+## Kontribusi
+
+1. Fork repository
+2. Buat branch fitur baru (`git checkout -b fitur-baru`)
+3. Commit perubahan (`git commit -m 'Menambahkan fitur baru'`)
+4. Push ke branch (`git push origin fitur-baru`)
+5. Buat Pull Request
+
+## Lisensi
+
+[MIT License](LICENSE)
+
+## Informasi Kontak
+
+Untuk pertanyaan dan dukungan, silakan hubungi:
+- GitHub: [@edoazn](https://github.com/edoazn)
+
+## Update Terakhir
+
+2025-06-08
+
+---
+
+&copy; 2025 Dikembangkan oleh [edoazn](https://github.com/edoazn)

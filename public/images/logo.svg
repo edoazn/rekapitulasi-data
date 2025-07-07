@@ -1,0 +1,6 @@
+<!-- SVG Placeholder for Logo -->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="8" fill="#3A5FCD"/>
+  <path d="M24 8L36 16V32L24 40L12 32V16L24 8Z" fill="white"/>
+  <circle cx="24" cy="24" r="6" fill="#3A5FCD"/>
+</svg>

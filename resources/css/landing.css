@@ -29,7 +29,7 @@ html {
 
 #hero-bg-image {
     /* DIPERBAIKI: Gunakan path absolut dari folder public */
-    background-image: url('/images/masjid-bajumi-wahab.jpg');
+    background-image: url('/images/hero-bg.svg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang di Pelayanan Publik Ogan Ilir</title>
+    <title>Sistem Rekapitulasi Data Pelayanan - Kabupaten Ogan Ilir</title>
+    <meta name="description" content="Sistem Rekapitulasi Data Pelayanan Kabupaten Ogan Ilir - Platform transparansi dan akuntabilitas pelayanan publik">
+    <meta name="keywords" content="rekapitulasi data, pelayanan publik, ogan ilir, transparansi, akuntabilitas">
+    <meta name="author" content="Pemerintah Kabupaten Ogan Ilir">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="Sistem Rekapitulasi Data Pelayanan - Kabupaten Ogan Ilir">
+    <meta property="og:description" content="Platform transparansi dan akuntabilitas pelayanan publik Kabupaten Ogan Ilir">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url('/') }}">
+    <meta property="twitter:title" content="Sistem Rekapitulasi Data Pelayanan - Kabupaten Ogan Ilir">
+    <meta property="twitter:description" content="Platform transparansi dan akuntabilitas pelayanan publik Kabupaten Ogan Ilir">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -15,8 +34,8 @@
         class="bg-transparent text-white fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="images/output-onlinepngtools.png" alt="Logo Ogan Ilir" class="h-10 md:h-12 mr-3">
-                <a href="index.html" class="text-xl md:text-2xl font-bold current-text-color">
+                <img src="/images/logo.svg" alt="Logo Ogan Ilir" class="h-10 md:h-12 mr-3">
+                <a href="/" class="text-xl md:text-2xl font-bold current-text-color">
                     Pelayanan Ogan Ilir
                 </a>
             </div>
@@ -31,6 +50,11 @@
                     <div class="bg-white h-[2px] w-0 group-hover:w-full transition-all duration-300 nav-underline">
                     </div>
                 </a>
+                <a href="#manfaat" class="current-text-color hover:opacity-75 p-3 group">
+                    Manfaat
+                    <div class="bg-white h-[2px] w-0 group-hover:w-full transition-all duration-300 nav-underline">
+                    </div>
+                </a>
                 <a href="#statistik" class="current-text-color hover:opacity-75 p-3 group">
                     Statistik
                     <div class="bg-white h-[2px] w-0 group-hover:w-full transition-all duration-300 nav-underline">
@@ -41,7 +65,7 @@
                     <div class="bg-white h-[2px] w-0 group-hover:w-full transition-all duration-300 nav-underline">
                     </div>
                 </a>
-                <a href="login.html"
+                <a href="/admin"
                     class="bg-white text-brand-blue px-4 py-2 rounded-md hover:bg-gray-200 transition duration-300 ml-2 nav-button-solid">
                     Masuk
                 </a>
@@ -60,11 +84,13 @@
                 class="block text-text-secondary hover:text-brand-blue hover:underline px-6 py-3">Beranda</a>
             <a href="#tentang"
                 class="block text-text-secondary hover:text-brand-blue hover:underline px-6 py-3">Tentang</a>
+            <a href="#manfaat"
+                class="block text-text-secondary hover:text-brand-blue hover:underline px-6 py-3">Manfaat</a>
             <a href="#statistik"
                 class="block text-text-secondary hover:text-brand-blue hover:underline px-6 py-3">Statistik</a>
             <a href="#kontak"
                 class="block text-text-secondary hover:text-brand-blue hover:underline px-6 py-3">Kontak</a>
-            <a href="login.html"
+            <a href="/admin"
                 class="block bg-brand-blue text-white text-center mx-6 my-3 px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">
                 Masuk
             </a>
@@ -94,7 +120,7 @@
                     class="bg-brand-blue text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-700 transition duration-300 inline-block shadow-lg">
                     Lihat Statistik
                 </a>
-                <a href="login.html"
+                <a href="/admin"
                     class="bg-white text-brand-blue px-8 py-3 rounded-md text-lg font-medium hover:bg-gray-100 transition duration-300 inline-block shadow-lg">
                     Masuk ke Sistem
                 </a>
@@ -129,6 +155,121 @@
                     <h3 class="text-xl font-semibold text-text-primary mb-2">Akses Publik Terbuka</h3>
                     <p class="text-text-secondary">Masyarakat dapat dengan mudah mengakses informasiini sebagai bagian
                         dari hak untuk mengetahui dan mengawasi kinerja pemerintah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="cara-kerja" class="py-16 md:py-24 bg-brand-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4 scroll-animate">Cara Kerja Sistem</h2>
+                <p class="text-lg text-text-secondary max-w-3xl mx-auto scroll-animate delay-100">
+                    Proses sederhana untuk mengakses dan memanfaatkan sistem rekapitulasi data pelayanan kami
+                </p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center scroll-animate">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <div class="text-brand-blue text-3xl"><i class="fas fa-user-plus"></i></div>
+                    </div>
+                    <div class="bg-brand-blue text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3 text-sm font-bold">1</div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-2">Daftar/Masuk</h3>
+                    <p class="text-text-secondary">Masuk ke sistem menggunakan akun yang telah disediakan oleh administrator</p>
+                </div>
+                <div class="text-center scroll-animate delay-100">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <div class="text-brand-blue text-3xl"><i class="fas fa-search"></i></div>
+                    </div>
+                    <div class="bg-brand-blue text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3 text-sm font-bold">2</div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-2">Jelajahi Data</h3>
+                    <p class="text-text-secondary">Akses berbagai jenis data pelayanan dan statistik kinerja yang tersedia</p>
+                </div>
+                <div class="text-center scroll-animate delay-200">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <div class="text-brand-blue text-3xl"><i class="fas fa-chart-bar"></i></div>
+                    </div>
+                    <div class="bg-brand-blue text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3 text-sm font-bold">3</div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-2">Analisis</h3>
+                    <p class="text-text-secondary">Gunakan fitur dashboard dan visualisasi untuk memahami trends dan pola data</p>
+                </div>
+                <div class="text-center scroll-animate delay-300">
+                    <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <div class="text-brand-blue text-3xl"><i class="fas fa-download"></i></div>
+                    </div>
+                    <div class="bg-brand-blue text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-3 text-sm font-bold">4</div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-2">Export Data</h3>
+                    <p class="text-text-secondary">Unduh laporan dan data dalam berbagai format sesuai kebutuhan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="manfaat" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4 scroll-animate">Manfaat Sistem</h2>
+                <p class="text-lg text-text-secondary max-w-3xl mx-auto scroll-animate delay-100">
+                    Keuntungan yang dapat diperoleh dengan menggunakan sistem rekapitulasi data pelayanan kami
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="flex items-start scroll-animate">
+                        <div class="bg-brand-blue text-white rounded-lg p-3 mr-4 flex-shrink-0">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary mb-2">Efisiensi Pelaporan</h3>
+                            <p class="text-text-secondary">Otomatisasi proses rekapitulasi mengurangi waktu dan tenaga yang diperlukan untuk membuat laporan</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start scroll-animate delay-100">
+                        <div class="bg-brand-blue text-white rounded-lg p-3 mr-4 flex-shrink-0">
+                            <i class="fas fa-bullseye text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary mb-2">Akurasi Data</h3>
+                            <p class="text-text-secondary">Integrasi langsung dengan sistem sumber menjamin keakuratan dan konsistensi data</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start scroll-animate delay-200">
+                        <div class="bg-brand-blue text-white rounded-lg p-3 mr-4 flex-shrink-0">
+                            <i class="fas fa-mobile-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary mb-2">Kemudahan Akses</h3>
+                            <p class="text-text-secondary">Interface yang user-friendly dapat diakses kapan saja dan dimana saja</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start scroll-animate delay-300">
+                        <div class="bg-brand-blue text-white rounded-lg p-3 mr-4 flex-shrink-0">
+                            <i class="fas fa-eye text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-text-primary mb-2">Transparansi Pelayanan</h3>
+                            <p class="text-text-secondary">Masyarakat dapat memantau kinerja pelayanan publik secara real-time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-animate delay-100">
+                    <div class="bg-brand-gray rounded-lg p-8 text-center">
+                        <div class="text-brand-blue text-6xl mb-6"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="text-2xl font-bold text-text-primary mb-4">Real-time Insights</h3>
+                        <p class="text-text-secondary mb-6">Dapatkan wawasan mendalam tentang kinerja pelayanan dengan visualisasi data yang interaktif dan mudah dipahami</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="bg-white rounded p-3">
+                                <div class="text-brand-blue font-bold text-lg">24/7</div>
+                                <div class="text-text-secondary">Akses Data</div>
+                            </div>
+                            <div class="bg-white rounded p-3">
+                                <div class="text-brand-blue font-bold text-lg">100%</div>
+                                <div class="text-text-secondary">Akurat</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -237,9 +378,10 @@
                     <ul class="space-y-2 text-sm">
                         <li><a href="#beranda" class="hover:text-white hover:underline">Beranda</a></li>
                         <li><a href="#tentang" class="hover:text-white hover:underline">Tentang Sistem</a></li>
+                        <li><a href="#manfaat" class="hover:text-white hover:underline">Manfaat</a></li>
                         <li><a href="#statistik" class="hover:text-white hover:underline">Statistik</a></li> {/* Changed
                         from #layanan */}
-                        <li><a href="login.html" class="hover:text-white hover:underline">Masuk Sistem</a></li>
+                        <li><a href="/admin" class="hover:text-white hover:underline">Masuk Sistem</a></li>
                         <li><a href="[Placeholder: Kebijakan Privasi]"
                                 class="hover:text-white hover:underline">Kebijakan Privasi</a>
                         </li>

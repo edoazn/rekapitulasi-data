@@ -13,4 +13,10 @@ class BidangPelayanan extends Model
     {
         return $this->hasMany(JenisBidangPelayanan::class, 'bidang_pelayanan_id');
     }
+
+    // Relasi ke users
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

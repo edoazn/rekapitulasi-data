@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bidang_pelayanan_id',
     ];
 
     /**
@@ -51,5 +52,31 @@ class User extends Authenticatable
     public function pelayanans()
     {
         return $this->hasMany(Pelayanan::class);
+    }
+
+    // relasi ke bidang pelayanan
+    public function bidangPelayanan()
+    {
+        return $this->belongsTo(BidangPelayanan::class);
+    }
+
+    // helper method untuk cek apakah user adalah admin
+    public function isAdmin()
+    {
+        return $this->hasRole('Admin');
+    }
+
+    // helper method untuk mendapatkan jenis bidang pelayanan yang diizinkan
+    public function getAllowedJenisBidangPelayanan()
+    {
+        if ($this->isAdmin()) {
+            return \App\Models\JenisBidangPelayanan::all();
+        }
+
+        if ($this->bidang_pelayanan_id) {
+            return \App\Models\JenisBidangPelayanan::where('bidang_pelayanan_id', $this->bidang_pelayanan_id)->get();
+        }
+
+        return collect();
     }
 }

@@ -34,13 +34,14 @@ class PelayananResource extends Resource
                     ->displayFormat('d F Y')
                     ->required(),
 
+                // Bidang Pelayanan
                 Forms\Components\Select::make('bidang_pelayanan_id')
                     ->label('Bidang Pelayanan')
                     ->options(BidangPelayanan::all()->pluck('bidang_pelayanan', 'id'))
                     ->reactive()
                     ->required(),
 
-                // Select Jenis Bidang Pelayanan (cascade)
+                // Jenis Bidang Pelayanan
                 Forms\Components\Select::make('jenis_bidang_pelayanan_id')
                     ->label('Jenis Bidang Pelayanan')
                     ->options(fn (callable $get) => JenisBidangPelayanan::where('bidang_pelayanan_id', $get('bidang_pelayanan_id'))->pluck('nama_jenis', 'id'))

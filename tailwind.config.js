@@ -1,23 +1,79 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
       "./resources/**/*.blade.php",
       "./resources/**/*.js",
+      "./resources/**/*.vue",
+      "./storage/framework/views/*.php",
       
       // Path di bawah ini penting agar style di halaman admin Filament Anda tidak rusak
       './app/Filament/**/*.php',
       './resources/views/filament/**/*.blade.php',
       './vendor/filament/**/*.blade.php',
     ],
+    safelist: [
+      'bg-brand-blue',
+      'text-brand-blue',
+      'bg-brand-blue-light',
+      'text-text-primary',
+      'text-text-secondary',
+      'bg-brand-gray',
+      'border-brand-blue',
+      'hover:bg-blue-700',
+      'hover:text-brand-blue',
+      'hover:bg-brand-blue',
+      'hover:text-white',
+      'from-brand-blue',
+      'to-brand-blue-light',
+      'from-brand-blue-light',
+      'pt-24',
+      'pb-16',
+      'py-20',
+      'gap-12',
+      'space-y-8',
+      'space-y-4',
+      'space-x-8',
+      'space-x-3',
+      'lg:grid-cols-2',
+      'lg:grid-cols-3',
+      'lg:grid-cols-4',
+      'md:grid-cols-2',
+      'md:grid-cols-3',
+      'md:grid-cols-4',
+      'lg:text-6xl',
+      'lg:text-4xl',
+      'text-4xl',
+      'text-3xl',
+      'text-2xl',
+      'text-xl',
+      'text-lg',
+      'text-sm',
+      'text-xs',
+      'w-10',
+      'h-10',
+      'w-14',
+      'h-14',
+      'w-20',
+      'h-20',
+      'w-24',
+      'h-24',
+      'w-32',
+      'h-32',
+      'rounded-lg',
+      'rounded-xl',
+      'rounded-2xl',
+      'rounded-full',
+      'shadow-lg',
+      'shadow-xl',
+      'shadow-2xl',
+    ],
     theme: {
       extend: {
         fontFamily: {
-            // DIPERBAIKI: Semua nama font harus dalam tanda kutip string
-            sans: ['Instrument Sans', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
                 'Segoe UI Symbol', 'Noto Color Emoji']
         },
         colors: {
-            // Konfigurasi warna Anda sudah benar!
             'brand-blue': '#3A5FCD',
             'brand-blue-light': '#EBF0FF',
             'brand-gray': '#F0F2F5',
@@ -26,12 +82,18 @@ export default {
             'sidebar-bg': '#2C3E50',
             'sidebar-text': '#ECF0F1',
             'sidebar-active': '#3498DB',
-        }
+        },
+        container: {
+          center: true,
+          padding: {
+            DEFAULT: '1rem',
+            sm: '2rem',
+            lg: '4rem',
+            xl: '5rem',
+            '2xl': '6rem',
+          },
+        },
       },
     },
-    plugins: [
-      // Plugin ini biasanya diperlukan untuk styling form Filament
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/typography'),
-    ],
+    plugins: [],
   }

@@ -35,20 +35,27 @@ class UserResource extends Resource
                         // name
                         Forms\Components\TextInput::make('name')
                             ->required()
+                            ->rules('required')
+                            ->placeholder('Masukkan nama lengkap')
+                            ->label('Nama Lengkap')
                             ->maxLength(255),
 
                         // email
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
-                            ->unique(ignoreRecord: true)
+                            ->rules('required')
+                            ->placeholder('Masukkan email')
                             ->label('Email')
+                            ->unique(ignoreRecord: true)
                             ->maxLength(255),
 
                         // password
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->revealable()
+                            ->rules('required')
+                            ->placeholder('Masukkan password')
                             ->maxLength(255)
                             ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
                             ->dehydrated(fn ($state) => filled($state))

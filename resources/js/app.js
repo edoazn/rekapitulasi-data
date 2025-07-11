@@ -1,2 +1,4 @@
 import './bootstrap';
-import './landing'
+import './landing';
+
+// Global JavaScript for the application

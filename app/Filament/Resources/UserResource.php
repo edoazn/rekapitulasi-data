@@ -68,6 +68,14 @@ class UserResource extends Resource
                             ->preload()
                             ->required()
                             ->multiple(false),
+
+                        // bidang pelayanan
+                        Forms\Components\Select::make('bidang_pelayanan_id')
+                            ->label('Bidang Pelayanan')
+                            ->relationship('bidangPelayanan', 'bidang_pelayanan')
+                            ->preload()
+                            ->nullable()
+                            ->helperText('Hanya diperlukan untuk role Petugas'),
                     ]),
             ]);
     }
@@ -82,6 +90,10 @@ class UserResource extends Resource
                 // email
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                // bidang pelayanan
+                Tables\Columns\TextColumn::make('bidangPelayanan.bidang_pelayanan')
+                    ->label('Bidang Pelayanan')
+                    ->sortable(),
                 // created_at
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

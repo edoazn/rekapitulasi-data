@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
 // Sitemap for SEO
 Route::get('/sitemap.xml', function () {
     $xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -16,7 +17,7 @@ Route::get('/sitemap.xml', function () {
     $xml .= '<priority>1.0</priority>';
     $xml .= '</url>';
     $xml .= '</urlset>';
-    
+
     return response($xml, 200, ['Content-Type' => 'application/xml']);
 })->name('sitemap');
 

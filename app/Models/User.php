@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bidang_pelayanan_id',
     ];
 
     /**
@@ -52,4 +53,32 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pelayanan::class);
     }
+
+    // relasi ke bidang pelayanan - BARU
+    public function bidangPelayanan()
+    {
+        return $this->belongsTo(BidangPelayanan::class, 'bidang_pelayanan_id');
+    }
+
+    // method helper untuk mendapatkan jenis bidang pelayanan yang diizinkan - BARU
+    public function allowedJenisBidangPelayanan()
+    {
+        if (!$this->bidang_pelayanan_id) {
+            return collect([]);
+        }
+        
+        return $this->bidangPelayanan->jenisBidangPelayanan;
+    }
+
+    // // method untuk cek apakah user bisa akses bidang pelayanan tertentu - BARU
+    // public function canAccessBidangPelayanan($bidangPelayananId)
+    // {
+    //     // Admin bisa akses semua
+    //     if ($this->hasRole('Admin')) {
+    //         return true;
+    //     }
+
+    //     // User hanya bisa akses bidang pelayanan mereka sendiri
+    //     return $this->bidang_pelayanan_id == $bidangPelayananId;
+    // }
 }

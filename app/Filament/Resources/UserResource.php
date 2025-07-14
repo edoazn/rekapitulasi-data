@@ -29,7 +29,6 @@ class UserResource extends Resource
         return $form
             ->schema([
                 // card
-
                 Forms\Components\Section::make()
                     ->schema([
                         // name
@@ -61,6 +60,14 @@ class UserResource extends Resource
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $operation): bool => $operation === 'create'),
 
+                        // bidang_pelayanan_id
+                        Forms\Components\Select::make('bidang_pelayanan_id')
+                            ->label('Bidang Pelayanan')
+                            ->relationship('bidangPelayanan', 'bidang_pelayanan')
+                            ->preload()
+                            ->nullable()
+                            ->placeholder('Pilih bidang pelayanan'),
+
                         // role
                         Forms\Components\Select::make('roles')
                             ->label('Role')
@@ -82,6 +89,20 @@ class UserResource extends Resource
                 // email
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                // bidang_pelayanan_id
+                Tables\Columns\TextColumn::make('bidangPelayanan.bidang_pelayanan')
+                    ->label('Bidang Pelayanan')
+                    ->sortable()
+                    ->placeholder('Semua Bidang'),
+                // role
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Role')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Admin' => 'success',
+                        'Petugas' => 'warning',
+                        default => 'gray',
+                    }),
                 // created_at
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -95,7 +116,17 @@ class UserResource extends Resource
 
             ])
             ->filters([
-                //
+            // Filter berdasarkan bidang pelayanan - BARU
+                Tables\Filters\SelectFilter::make('bidang_pelayanan_id')
+                    ->label('Bidang Pelayanan')
+                    ->relationship('bidangPelayanan', 'bidang_pelayanan')
+                    ->placeholder('Semua Bidang'),
+                
+                // Filter berdasarkan role - BARU
+                Tables\Filters\SelectFilter::make('roles')
+                    ->label('Role')
+                    ->relationship('roles', 'name')
+                    ->placeholder('Semua Role'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -52,6 +52,9 @@ class BidangPelayananResource extends Resource
                 Tables\Columns\TextColumn::make('keterangan')
                     ->label('Keterangan')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('users_count')
+                    ->label('Jumlah User')
+                    ->counts('users'),
             ])
             ->filters([
                 //

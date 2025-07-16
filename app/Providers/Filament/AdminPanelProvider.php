@@ -8,6 +8,9 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Notifications\Livewire\Notifications;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\VerticalAlignment;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -21,6 +24,11 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+
+        // Merubah Notifikasi berada di tengah
+        Notifications::alignment(Alignment::Center);
+        Notifications::verticalAlignment(VerticalAlignment::Start);
+
         return $panel
             ->default()
             ->id('admin')

@@ -6,7 +6,6 @@ use App\Models\BidangPelayanan;
 use App\Models\JenisBidangPelayanan;
 use App\Models\Pelayanan;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 

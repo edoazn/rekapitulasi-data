@@ -8,7 +8,6 @@ use App\Models\JenisBidangPelayanan;
 use App\Models\Pelayanan;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -72,16 +71,15 @@ class PelayananResource extends Resource
                 // Jenis Bidang Pelayanan (dibatasi berdasarkan bidang pelayanan user)
                 Forms\Components\Select::make('jenis_bidang_pelayanan_id')
                     ->label('Jenis Bidang Pelayanan')
-                    ->options(function () {
-                        $user = auth()->user();
-                        if ($user->bidang_pelayanan_id) {
-                            return JenisBidangPelayanan::where('bidang_pelayanan_id', $user->bidang_pelayanan_id)
-                                ->pluck('nama_jenis', 'id');
+                    ->options(function ($get) {
+                        $bidangId = $get('bidang_pelayanan_id'); // Ambil bidang yang dipilih user di form
+                        if ($bidangId) {
+                            return JenisBidangPelayanan::where('bidang_pelayanan_id', $bidangId)->pluck('nama_jenis', 'id');
                         }
-                        return JenisBidangPelayanan::pluck('nama_jenis', 'id');
+                        return [];
                     })
-                    ->required()
-                    ->searchable(),
+                    ->reactive()
+                    ->required(),
 
                 // jumlah
                 Forms\Components\TextInput::make('jumlah_pelayanan')

@@ -62,11 +62,11 @@
             <div class="space-y-8">
                 <div class="space-y-4">
                     <h1 class="text-4xl lg:text-6xl font-bold text-text-primary leading-tight">
-                        Sistem Rekapitulasi Data 
+                        Sistem Rekapitulasi Data
                         <span class="text-brand-blue">Pelayanan Terpadu</span>
                     </h1>
                     <p class="text-xl text-text-secondary leading-relaxed">
-                        Kelola, analisis, dan laporkan data pelayanan dengan mudah melalui sistem yang terintegrasi, 
+                        Kelola, analisis, dan laporkan data pelayanan dengan mudah melalui sistem yang terintegrasi,
                         efisien, dan memberikan insight real-time untuk pengambilan keputusan yang lebih baik.
                     </p>
                 </div>
@@ -104,7 +104,7 @@
                             <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                             <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                         </div>
-                        
+
                         <!-- Mock Dashboard -->
                         <div class="space-y-4">
                             <div class="h-4 bg-gray-200 rounded w-3/4"></div>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Background decoration -->
                 <div class="absolute -top-4 -right-4 w-24 h-24 bg-brand-blue/20 rounded-full"></div>
                 <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-brand-blue/10 to-transparent rounded-full"></div>
@@ -475,7 +475,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Floating elements -->
                 <div class="absolute -top-4 -right-4 w-20 h-20 bg-brand-blue/10 rounded-full"></div>
                 <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-brand-blue/20 to-transparent rounded-full"></div>

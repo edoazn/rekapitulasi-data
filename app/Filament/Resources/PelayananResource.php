@@ -70,7 +70,7 @@ class PelayananResource extends Resource
 
                 // Jenis Bidang Pelayanan (dibatasi berdasarkan bidang pelayanan user)
                 Forms\Components\Select::make('jenis_bidang_pelayanan_id')
-                    ->label('Jenis Bidang Pelayanan')
+                    ->label('Jenis Pelayanan')
                     ->options(function ($get) {
                         $bidangId = $get('bidang_pelayanan_id'); // Ambil bidang yang dipilih user di form
                         if ($bidangId) {
@@ -110,7 +110,7 @@ class PelayananResource extends Resource
 
                 // jenis_bidang_pelayanan
                 Tables\Columns\TextColumn::make('jenisBidangPelayanan.nama_jenis')
-                    ->label('Jenis Bidang Pelayanan'),
+                    ->label('Jenis Pelayanan'),
 
                 // jumlah
                 Tables\Columns\TextColumn::make('jumlah_pelayanan')

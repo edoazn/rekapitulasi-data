@@ -16,7 +16,7 @@ class BidangPelayananResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
-    protected static ?string $navigationGroup = 'Master Pelayanan';
+    protected static ?string $navigationGroup = 'Manajemen Pelayanan';
 
     // admin only
     public static function canViewAny(): bool
@@ -57,7 +57,6 @@ class BidangPelayananResource extends Resource
                     ->counts('users'),
             ])
             ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -72,7 +71,6 @@ class BidangPelayananResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 

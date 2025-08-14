@@ -16,7 +16,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationGroup = 'Manajemen User';
+    protected static ?string $navigationGroup = 'Manajemen Pengguna';
+
+    protected static ?string $navigationLabel = 'Pengguna';
+
+    protected static ?string $pluralLabel = 'Pengguna';
 
     // hak akses
     public static function canViewAny(): bool
@@ -103,25 +107,8 @@ class UserResource extends Resource
                         'Petugas' => 'warning',
                         default => 'gray',
                     }),
-                // created_at
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                // updated_at
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-
             ])
             ->filters([
-            // Filter berdasarkan bidang pelayanan - BARU
-                Tables\Filters\SelectFilter::make('bidang_pelayanan_id')
-                    ->label('Bidang Pelayanan')
-                    ->relationship('bidangPelayanan', 'bidang_pelayanan')
-                    ->placeholder('Semua Bidang'),
-                
                 // Filter berdasarkan role - BARU
                 Tables\Filters\SelectFilter::make('roles')
                     ->label('Role')
@@ -163,7 +150,6 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 

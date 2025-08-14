@@ -19,8 +19,15 @@ class DashboardOverview extends Widget
         return [
             'totalBidang' => BidangPelayanan::count(),
             'totalJenis' => JenisBidangPelayanan::count(),
-            'totalPelayanan' => Pelayanan::count(),
+            // jumlah pelayanan di tabel
+            'jumlahPelayanan' => Pelayanan::sum('jumlah_pelayanan'),
             'totalUser' => User::count(),
         ];
+    }
+
+    // hanya admin saja
+    public static function canView(): bool
+    {
+        return auth()->user()->hasRole('Admin');
     }
 }

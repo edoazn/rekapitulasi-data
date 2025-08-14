@@ -16,7 +16,11 @@ class JenisBidangPelayananResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $navigationGroup = 'Master Pelayanan';
+    protected static ?string $navigationGroup = 'Manajemen Pelayanan';
+
+    protected static ?string $navigationLabel = 'Jenis Pelayanan';
+
+    protected static ?string $pluralLabel = 'Jenis Pelayanan';
 
     // admin only
     public static function canAccess(): bool
@@ -36,7 +40,7 @@ class JenisBidangPelayananResource extends Resource
 
                 // jenis_bidang_pelayanan
                 Forms\Components\TextInput::make('nama_jenis')
-                    ->label('Jenis Bidang Pelayanan')
+                    ->label('Jenis Pelayanan')
                     ->required()
                     ->unique(ignoreRecord: true),
             ]);
@@ -52,10 +56,9 @@ class JenisBidangPelayananResource extends Resource
 
                 // jenis_bidang_pelayanan
                 Tables\Columns\TextColumn::make('nama_jenis')
-                    ->label('Jenis Bidang Pelayanan'),
+                    ->label('Jenis Pelayanan'),
             ])
             ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -70,7 +73,6 @@ class JenisBidangPelayananResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
